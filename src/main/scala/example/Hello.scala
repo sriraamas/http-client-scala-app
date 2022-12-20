@@ -47,7 +47,3 @@ object Hello {
   }
 
 }
-
-trait Greeting {
-  lazy val greeting: String = "hello"
-}
