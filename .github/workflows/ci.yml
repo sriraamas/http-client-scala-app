@@ -37,5 +37,5 @@ jobs:
         run: |
           set -x
           tag="${GITHUB_REF#refs/tags/}"
-          args=$(printf -- "-a %q " target/*/*.jar)
+          args=$(printf -- "-a %q " *.jar)
           hub release create $args -m "Release $tag" $tag
