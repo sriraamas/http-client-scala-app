@@ -14,5 +14,11 @@ jobs:
         distribution: temurin
         java-version: 11
         cache: 'sbt'
-    - run: sbt package
+    - name: Build
+      run: sbt package
+    - uses: actions/upload-artifact@v2
+      with:
+        name: jars
+        path: '*/target/*.jar'
+        retention-days: 1
     
