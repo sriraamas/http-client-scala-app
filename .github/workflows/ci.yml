@@ -15,11 +15,11 @@ jobs:
         java-version: 11
         cache: 'sbt'
     - name: Build
-      run: sbt package
+      run: sbt assembly
     - uses: actions/upload-artifact@v2
       with:
         name: jars
-        path: 'target/*/*.jar'
+        path: 'target/scala-2.13/*.jar'
         retention-days: 1
   release:
     if: ${{ startsWith(github.ref, 'refs/tags') }}
@@ -37,5 +37,5 @@ jobs:
         run: |
           set -x
           tag="${GITHUB_REF#refs/tags/}"
-          args=$(printf -- "-a %q " *.jar)
+          args=$(printf -- "-a %q " target/scala-2.13/*.jar)
           hub release create $args -m "Release $tag" $tag
